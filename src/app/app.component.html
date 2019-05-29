@@ -1,0 +1,42 @@
+<div fxLayout="column" class="app-content">
+  <mat-toolbar color="primary" fxFlex="none">
+    <mat-toolbar-row>
+      <button
+        mat-icon-button
+        fxHide
+        [fxShow.xs]="true"
+        fxFlex="none"
+        (click)="sidebar.toggle()"
+        class="show-menu"
+      >
+        <mat-icon> {{ sidebar.opened ? 'close' : 'menu' }} </mat-icon>
+      </button>
+      <a mat-button routelink="/" class="logo">
+        <img src="assets/images/angular.svg" />Angular
+      </a>
+
+      <app-left-menu [fxHide.xs]="true" fxFlex="none" fxLayout></app-left-menu>
+      <div class="occupy-empty" fxFlex="grow"></div>
+      <app-right-menu
+        [fxHide.xs]="true"
+        fxFlex="none"
+        fxLayout
+      ></app-right-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlex="grow">
+    <mat-sidenav mode="over" #sidebar fxHide [fxHide.xs]="false">
+      <div fxFlexFill fxLayout="column" class="column-menu">
+        <app-left-menu
+          fxFlex="none"
+          fxLayout="column"
+        ></app-left-menu>
+        <app-right-menu
+          fxFlex="none"
+          fxLayout="column"
+        ></app-right-menu></div
+    ></mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
