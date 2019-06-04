@@ -15,28 +15,54 @@
         <img src="assets/images/angular.svg" />Angular
       </a>
 
-      <app-left-menu [fxHide.xs]="true" fxFlex="none" fxLayout></app-left-menu>
-      <div class="occupy-empty" fxFlex="grow"></div>
-      <app-right-menu
+      <app-menu
+        *ngIf="leftMenu != null && leftMenu.length > 0"
+        [menus]="leftMenu"
+        color="primary-reverse"
         [fxHide.xs]="true"
         fxFlex="none"
         fxLayout
-      ></app-right-menu>
+        fxLayoutGap="20px"
+      ></app-menu>
+      <div class="occupy-empty" fxFlex="grow"></div>
+      <app-menu
+        *ngIf="rightMenu != null && rightMenu.length > 0"
+        [menus]="rightMenu"
+        color="primary-reverse"
+        [fxHide.xs]="true"
+        fxFlex="none"
+        fxLayout
+        fxLayoutGap="20px"
+      ></app-menu>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <mat-sidenav-container fxFlex="grow">
-    <mat-sidenav mode="over" #sidebar fxHide [fxHide.xs]="false">
-      <div fxFlexFill fxLayout="column" class="column-menu">
-        <app-left-menu
-          fxFlex="none"
-          fxLayout="column"
-        ></app-left-menu>
-        <app-right-menu
-          fxFlex="none"
-          fxLayout="column"
-        ></app-right-menu></div
-    ></mat-sidenav>
+    <mat-sidenav
+      mode="over"
+      #sidebar
+      fxHide
+      [fxHide.xs]="false"
+      fxLayout="column"
+      class="column-menu"
+    >
+      <app-menu
+        *ngIf="leftMenu != null && leftMenu.length > 0"
+        [menus]="leftMenu"
+        color="primary"
+        fxFlex="none"
+        fxLayout="column"
+        fxLayoutGap="20px"
+      ></app-menu>
+      <app-menu
+        *ngIf="rightMenu != null && rightMenu.length > 0"
+        color="primary"
+        [menus]="rightMenu"
+        fxFlex="none"
+        fxLayout="column"
+        fxLayoutGap="20px"
+      ></app-menu>
+    </mat-sidenav>
     <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
   </mat-sidenav-container>
 </div>

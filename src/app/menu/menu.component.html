@@ -1,0 +1,54 @@
+<ng-container *ngFor="let top of topMenus">
+  <ng-container
+    *ngIf="
+      top.subMenu == null ||
+        id2MatMenu == null ||
+        id2MatMenu[top.subMenu.id] == null;
+      else menu
+    "
+  >
+    <button
+      mat-flat-button
+      color="{{ color }}"
+      id="{{ top.id }}"
+      [routerLink]="top.link"
+    >
+      {{ top.label }}
+    </button>
+  </ng-container>
+  <ng-template #menu>
+    <button
+      mat-flat-button
+      color="{{ color }}"
+      [matMenuTriggerFor]="id2MatMenu[top.subMenu.id]"
+      [routerLink]="top.link"
+    >
+      {{ top.label }}
+    </button>
+  </ng-template>
+</ng-container>
+<mat-menu *ngFor="let mp of subMenus" id="{{ mp.id }}">
+  <ng-container *ngFor="let menu of mp.menus">
+    <ng-container
+      *ngIf="
+        menu.subMenu == null ||
+          id2MatMenu == null ||
+          id2MatMenu[menu.subMenu.id] == null;
+        else menu1
+      "
+    >
+      <button mat-menu-item id="{{ menu.id }}" [routerLink]="menu.link">
+        {{ menu.label }}
+      </button>
+    </ng-container>
+    <ng-template #menu1>
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="id2MatMenu[menu.subMenu.id]"
+        [routerLink]="menu.link"
+      >
+        {{ menu.label }}
+      </button>
+    </ng-template>
+  </ng-container>
+</mat-menu>

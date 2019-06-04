@@ -8,11 +8,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { RightMenuComponent } from './right-menu/right-menu.component';
+import { MenuComponent } from './menu/menu.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [AppComponent, LeftMenuComponent, RightMenuComponent],
+  declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -20,7 +20,8 @@ import { RightMenuComponent } from './right-menu/right-menu.component';
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
